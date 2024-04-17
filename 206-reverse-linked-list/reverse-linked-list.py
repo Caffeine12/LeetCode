@@ -6,11 +6,10 @@
 
 class Solution(object):
     def reverseList(self, head):
-        previous = None
-        while head:
-            next_node = head.next
-            head.next = previous
-            previous = head
-            head = next_node
-            
-        return previous
+        if not head or not head.next:
+            return head
+        else:
+            new_node = self.reverseList(head.next)
+            head.next.next = head
+            head.next = None
+            return new_node
